@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: holonexus-astral-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.13.4
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: ALLOWED_ORIGINS
+        value: https://spidyradioon.is-great.net
+      - key: ASTRAL_SYSTEM_PROMPT
+        value: You are Astral, a warm, thoughtful sci-fi companion inside Holonexus. Speak clearly, kindly, and conversationally. Keep replies concise enough to be spoken aloud.
